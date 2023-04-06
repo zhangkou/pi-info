@@ -1,11 +1,12 @@
-var he_key = "yourkey"
-var city = "苏州"
+var city='121.60,31.20'
+var key='bc67c52318fa452cac8240b46f8aed81'
 
 $(function() {
     // clock
     let clock = setInterval(setTime, 1000);
-    let data = setInterval(setData, 1000 * 60 * 10);
-    let aqi = setInterval(setAQI, 1000 * 60 * 10);
+    //let data = setInterval(setData, 1000 * 60 * 10);
+    //let aqi = setInterval(setAQI, 1000 * 60 * 10);
+    setInterval(setNow, 1000 * 60 * 10);
     let $time = $('#time');
     let $date = $('#date');
     let $cnDate = $('#cnDate');
@@ -62,12 +63,13 @@ $(function() {
         counter: false
     });
 
-    setData();
+    //setData();
+    setNow();
     setAQI();
 });
 
 function setData() {
-    var url = "https://free-api.heweather.com/s6/weather?location=" + city + "&key=" + he_key;
+    var url = "https://devapi.qweather.com/v7/weather/3d?location=" + city + "&key=" + key;
     $.getJSON(url, function(data) {
         console.log(data);
         // 天气动画
@@ -137,12 +139,58 @@ function setData() {
 
 }
 
-function setAQI() {
-    var url = "https://free-api.heweather.com/s6/air/now?location=" + city + "&key=" + he_key;
+function setNow(){
+    var url = "https://devapi.qweather.com/v7/weather/now?location=" + city + "&key=" + key;
     $.getJSON(url, function(data) {
-        console.log(data);
-        var result = data.HeWeather6[0];
-        // AQI
-        jg.refresh(result.air_now_city.aqi);
+        // 天气动画
+        var code = data.now.icon;
+        var myDate = new Date();
+        var currentHour = myDate.getHours();
+        var daylight = true;
+        if (currentHour > 17 || currentHour < 6) {
+            daylight = false;
+        } else {
+            daylight = true;
+        }
+        var animation = "sunny"
+        if (code == 100) {
+            if (daylight) {
+                animation = "sunny";
+            } else {
+                animation = "starry";
+            }
+        } else if (code >= 101 && code <= 104) {
+            animation = "cloudy"
+        } else if (code >= 300 && code <= 313) {
+            if (code >= 310 && code <= 312) {
+                animation = "stormy"
+            } else {
+                animation = "rainy"
+            }
+        } else if (code >= 400 && code <= 407) {
+            animation = "snowy"
+        }
+        $("#weather_icon").attr("class", animation);
+
+        // 当前
+        var now = data.now;
+        $("#temperature-now").text(now.temp);
+        $("#temperature-now").append("<sup><small>°C</small> </sup> ");
+
+        // 湿度
+        jg.refresh(now.humidity);
+
+        // 天气描述
+        //$('#weather-text').text(now.text)
     });
+}
+
+function setAQI() {
+    // var url = "https://free-api.heweather.com/s6/air/now?location=" + city + "&key=" + he_key;
+    // $.getJSON(url, function(data) {
+    //     console.log(data);
+    //     var result = data.HeWeather6[0];
+    //     // AQI
+    //     jg.refresh(result.air_now_city.aqi);
+    // });
 }
