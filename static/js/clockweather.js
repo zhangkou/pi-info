@@ -5,7 +5,7 @@ $(function() {
     // clock
     let clock = setInterval(setTime, 1000);
     //let data = setInterval(setData, 1000 * 60 * 10);
-    //let aqi = setInterval(setAQI, 1000 * 60 * 10);
+    setInterval(setAQI, 1000 * 60 * 10);
     setInterval(setNow, 1000 * 60 * 10);
     let $time = $('#time');
     let $date = $('#date');
@@ -186,11 +186,19 @@ function setNow(){
 }
 
 function setAQI() {
-    // var url = "https://free-api.heweather.com/s6/air/now?location=" + city + "&key=" + he_key;
-    // $.getJSON(url, function(data) {
-    //     console.log(data);
-    //     var result = data.HeWeather6[0];
-    //     // AQI
-    //     jg.refresh(result.air_now_city.aqi);
-    // });
+    var url = "https://devapi.qweather.com/v7/air/now?location=" + city + "&key=" + key;
+    $.getJSON(url, function(data) {
+        console.log(data);
+        var now = data.now;
+        if(now) {
+            $("#category").text("空气质量 " + now.category);
+            $("#aqi").text(now.aqi);
+            $("#pm25").text(now.pm2p5);
+            $("#pm10").text(now.pm10);
+            $("#no2").text(now.no2);
+            $("#so2").text(now.so2);
+            $("#co").text(now.co);
+            $("#o3").text(now.o3);
+        }
+    });
 }

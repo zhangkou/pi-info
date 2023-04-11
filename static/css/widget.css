@@ -168,3 +168,7 @@ h3 {
     font-size: 30px;
     text-align: center;
 }
+
+table,th,tr,td{ 
+ border-bottom:0.5px dotted #dedede;/* 表格横线 */
+}
