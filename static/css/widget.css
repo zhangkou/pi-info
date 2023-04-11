@@ -4,6 +4,22 @@ body {
   color: #fff;
 }
 
+.container {
+  /* 将背景图像设置为图片链接 */
+  background-image: url("../img/R.jpeg");
+  /* 设置背景图像的尺寸 */
+  background-size: 100%; 
+  /* 设置透明度为0.5 */
+  opacity: 0.9;
+  /* 设置背景颜色为黑色 */
+  background-color: black;
+  /* 设置背景图像的层叠顺序为最低层 */
+  z-index: -1;
+  /* 设置div元素的高度为整个视口的高度 */
+  height: 100vh;
+}
+
+
 p {
   font-size:18px;
   text-align:center;
