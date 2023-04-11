@@ -26,8 +26,10 @@ $(function() {
     jg = new JustGage({
         id: "jg1",
         value: 72,
+        label: '湿度',
+        labelFontColor: "white",
         min: 0,
-        max: 300,
+        max: 100,
         pointer: true,
         pointerOptions: {
             toplength: 8,
@@ -35,30 +37,26 @@ $(function() {
             bottomwidth: 6,
             color: '#8e8e93'
         },
-        gaugeWidthScale: 0.4,
+        gaugeWidthScale: 0.5,
         hideMinMax: true,
         valueFontColor: "white",
         valueMinFontSize: 24,
         customSectors: [{
             color: "#00ff00",
             lo: 0,
-            hi: 50
+            hi: 30
         }, {
             color: "#ffcc00",
-            lo: 50,
-            hi: 100
+            lo: 30,
+            hi: 60
         }, {
             color: "#ff8a00",
-            lo: 100,
-            hi: 150
+            lo: 60,
+            hi: 90
         }, {
             color: "#f70000",
-            lo: 150,
-            hi: 200
-        }, {
-            color: "#90024c",
-            lo: 200,
-            hi: 300
+            lo: 90,
+            hi: 100
         }],
         counter: false
     });
