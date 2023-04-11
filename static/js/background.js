@@ -1,6 +1,6 @@
 $(function() {
     setInterval(chage_background_image, 1000 * 60 * 2);
-    chage_background_image();
+    //chage_background_image();
 });
 
 function chage_background_image() {
