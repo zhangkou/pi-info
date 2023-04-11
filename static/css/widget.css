@@ -3,7 +3,7 @@ body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   color: #fff;
   /* 将背景图像设置为图片链接 */
-  background-image: url("../img/R.jpeg");
+  background-image: url("../img/bg_img/1.jpeg");
   /* 设置背景图像的尺寸 */
   background-size: 100%; 
   /* 设置透明度为0.5 */
