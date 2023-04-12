@@ -189,13 +189,35 @@ function setAQI() {
         console.log(data);
         var now = data.now;
         if(now) {
-            $("#category").text("空气质量 " + now.category);
-            $("#aqi").text(now.aqi);
+            var aqiColor = 'green';
+            var nAQI = Number(now.aqi);
+            if(nAQI < 50) {
+                aqiColor = 'green';
+            }else if(nAQI >= 50 && nAQI < 100) {
+                aqiColor = 'yellow';
+            }else if(nAQI >= 100 && nAQI < 200) {
+                aqiColor = 'orange';
+            }else if(nAQI >= 200 && nAQI < 300) {
+                aqiColor = 'purple';
+            }else if(nAQI >= 300){
+                aqiColor = 'black';
+            }
+
+            $("#category").text("空气质量 ")
+            $("#category").append('<strong style="color: ' + aqiColor+ ';">' + now.category + '</strong>');
+
+            $("#aqi").text(now.aqi).css('color', aqiColor);
+
             $("#pm25").text(now.pm2p5);
+
             $("#pm10").text(now.pm10);
+
             $("#no2").text(now.no2);
+
             $("#so2").text(now.so2);
+
             $("#co").text(now.co);
+
             $("#o3").text(now.o3);
         }
     });
