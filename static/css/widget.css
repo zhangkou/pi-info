@@ -5,7 +5,7 @@ body {
   /* 将背景图像设置为图片链接 */
   background-image: url("../img/bg_img/1.jpeg");
   /* 设置背景图像的尺寸 */
-  background-size: 100%; 
+  background-size: 110%; 
   /* 设置透明度为0.5 */
   opacity: 0.9;
   /* 设置背景颜色为黑色 */
